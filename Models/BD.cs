@@ -15,8 +15,7 @@ public class BD
     public static List<Dificultad> ObtenerDificultades()
     {
             using (SqlConnection db = new SqlConnection(_connectionString))
-        {
-            string sqlQuery = "SELECT * FROM Dificultades";
+        {            string sqlQuery = "SELECT * FROM Dificultades";
             return db.Query<Dificultad>(sqlQuery).AsList();
         }
     }

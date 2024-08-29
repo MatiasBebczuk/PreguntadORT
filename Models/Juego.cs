@@ -4,8 +4,8 @@ public class Juego
         private static string username;
         private static int puntajeActual;
         private static int cantidadPreguntasCorrectas;
-        private static List<Pregunta> preguntas new List<Preguntas>();
-        private static List<Respuesta> respuestas  new List<Preguntas>();
+        private static List<Preguntas> preguntas = new List<Preguntas>();
+        private static List<Respuestas> respuestas = new List<Respuestas>();
 
         public static void  InicializarJuego()
         {
