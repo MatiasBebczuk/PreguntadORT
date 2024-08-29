@@ -15,7 +15,23 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        Juego.InicializarJuego;
+        ViewBag.Categorias = BD.ObtenerCategorias;
+        ViewBag.dificultad = BD.ObtenerDificultades;
         return View();
+    }
+
+    public IActionResult Comenzar(string username, int dificultad, int categoria)
+    {
+        //falta el condicional, ViewBag. =Juego.CargarPartida ;
+
+    }
+
+    [HttpPost]
+
+    public IActionResult VerificarRespuesta(int idPregunta, int idRespuesta)
+    {
+
     }
 
     public IActionResult Privacy()
