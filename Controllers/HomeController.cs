@@ -32,6 +32,7 @@ public class HomeController : Controller
     public IActionResult VerificarRespuesta(int idPregunta, int idRespuesta)
     {
 
+        return Respuesta;
     }
 
     public IActionResult Privacy()
