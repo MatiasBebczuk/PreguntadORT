@@ -19,6 +19,13 @@ public class BD
             return db.Query<Dificultades>(sqlQuery).AsList();
         }
     }
+    public static List<Categorias> ObtenerCategorias()
+    {
+            using (SqlConnection db = new SqlConnection(_connectionString))
+        {            string sqlQuery = "SELECT * FROM Categorias";
+            return db.Query<Categorias>(sqlQuery).AsList();
+        }
+    }
 
     public static List<Preguntas> ObtenerPreguntas(int dificultad, int categoria)
         {
