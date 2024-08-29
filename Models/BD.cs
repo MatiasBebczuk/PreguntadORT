@@ -12,34 +12,34 @@ public class BD
     public static List<Dificultades> Dificultades = new List<Dificultades>();
     public static List<Preguntas> Preguntas = new List<Preguntas>();
 
-    public static List<Dificultad> ObtenerDificultades()
+    public static List<Dificultades> ObtenerDificultades()
     {
             using (SqlConnection db = new SqlConnection(_connectionString))
         {            string sqlQuery = "SELECT * FROM Dificultades";
-            return db.Query<Dificultad>(sqlQuery).AsList();
+            return db.Query<Dificultades>(sqlQuery).AsList();
         }
     }
 
-    public static List<Pregunta> ObtenerPreguntas(int dificultad, int categoria)
+    public static List<Preguntas> ObtenerPreguntas(int dificultad, int categoria)
         {
             using (SqlConnection db = new SqlConnection(_connectionString))
             {
                 string sqlQuery = @"SELECT * FROM Preguntas WHERE (@Dificultad = -1 OR DificultadId = @Dificultad) AND (@Categoria = -1 OR CategoriaId = @Categoria)";
 
-                return db.Query<Pregunta>(sqlQuery, new { Dificultad = dificultad, Categoria = categoria }).AsList();
+                return db.Query<Preguntas>(sqlQuery, new { Dificultad = dificultad, Categoria = categoria }).AsList();
             }
         }
 
-    public static List<Respuesta> ObtenerRespuestas(List<Pregunta> preguntas)
+    public static List<Respuestas> ObtenerRespuestas(List<Preguntas> preguntas)
         {
             using (SqlConnection db = new SqlConnection(_connectionString))
             {
-                var respuestas = new List<Respuesta>();
+                var respuestas = new List<Respuestas>();
 
                 foreach (var pregunta in preguntas)
                 {
                     string sqlQuery = "SELECT * FROM Respuestas WHERE PreguntaId = @PreguntaId";
-                    var respuestasParaPregunta = db.Query<Respuesta>(sqlQuery, new { PreguntaId = pregunta.Id }).AsList();
+                    var respuestasParaPregunta = db.Query<Respuestas>(sqlQuery, new { PreguntaId = pregunta.IdPregunta }).AsList();
                     respuestas.AddRange(respuestasParaPregunta);
                 }
 

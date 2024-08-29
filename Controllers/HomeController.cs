@@ -15,9 +15,9 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        Juego.InicializarJuego;
-        ViewBag.Categorias = BD.ObtenerCategorias;
-        ViewBag.dificultad = BD.ObtenerDificultades;
+        Juego.InicializarJuego();
+        ViewBag.Categorias = BD.ObtenerCategorias();
+        ViewBag.dificultad = BD.ObtenerDificultades();
         return View();
     }
 
