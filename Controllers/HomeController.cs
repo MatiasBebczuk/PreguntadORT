@@ -23,8 +23,37 @@ public class HomeController : Controller
 
     public IActionResult Comenzar(string username, int dificultad, int categoria)
     {
-        //falta el condicional, ViewBag. =Juego.CargarPartida ;
+        bool partidaCargada = Juego.CargarPartida(username, dificultad, categoria);
 
+        if(partidaCargada)
+        {
+            //url action a jugar,home
+        }
+        else
+        {
+            //url action a index, home
+        }
+
+    }
+
+    public IActionResult jugar()
+    {
+    Pregunta preguntaActual = Juego.ObtenerProximaPregunta();
+
+    if (preguntaActual != null)
+    {
+    ViewBag.Pregunta = preguntaActual;
+
+    List<Respuesta> respuestas = Juego.ObtenerProximasRespuestas(preguntaActual.Id);
+    ViewBag.Respuestas = respuestas;
+
+    return View("Juego");
+    
+    }
+    else
+    {
+    return View("Fin");
+    }
     }
 
     [HttpPost]
@@ -32,6 +61,7 @@ public class HomeController : Controller
     public IActionResult VerificarRespuesta(int idPregunta, int idRespuesta)
     {
         bool esCorrecta = Juego.VerificarRespuesta(idPregunta, idRespuesta);
+        ViewBag.EsCorrecta = esCorrecta;
         return View("Respuesta");
     }
 
