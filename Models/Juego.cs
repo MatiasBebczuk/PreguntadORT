@@ -37,8 +37,15 @@ public class Juego
 
         }
 
-        public static void VerificarRespuesta(int idPregunta, int idRespuesta)
+        public bool VerificarRespuesta(int idPregunta, int idRespuesta)
         {
-
+            foreach (Pregunta pregunta in _preguntas)
+            {
+                if (pregunta.Id == idPregunta)
+                {
+                    return pregunta-RespuestaCorrectaId == idRespuesta;
+                }
+            }
+            return false; 
         }
     }

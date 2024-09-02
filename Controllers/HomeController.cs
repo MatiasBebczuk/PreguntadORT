@@ -31,8 +31,8 @@ public class HomeController : Controller
 
     public IActionResult VerificarRespuesta(int idPregunta, int idRespuesta)
     {
-
-        return Respuesta;
+        bool esCorrecta = Juego.VerificarRespuesta(idPregunta, idRespuesta);
+        return View("Respuesta");
     }
 
     public IActionResult Privacy()
