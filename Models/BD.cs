@@ -41,9 +41,9 @@ public class BD
         {
             using (SqlConnection db = new SqlConnection(_connectionString))
             {
-                var respuestas = new List<Respuestas>();
+                List<Respuestas> respuestas = new List<Respuestas>();
 
-                foreach (var pregunta in preguntas)
+                foreach (Preguntas pregunta in preguntas)
                 {
                     string sqlQuery = "SELECT * FROM Respuestas WHERE PreguntaId = @PreguntaId";
                     var respuestasParaPregunta = db.Query<Respuestas>(sqlQuery, new { PreguntaId = pregunta.IdPregunta }).AsList();
