@@ -1,3 +1,4 @@
+using PreguntadORT.Models;
 public class Respuestas
 {       
         public int idRespuesta { get; set; }

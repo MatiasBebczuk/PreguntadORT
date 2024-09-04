@@ -1,15 +1,21 @@
+using PreguntadORT.Models;
+
 public class Juego
     {
 
-        private static string username;
-        private static int puntajeActual;
-        private static int cantidadPreguntasCorrectas;
+         private static string username = "";
+        private static int puntajeActual = 0;
+        private static int cantidadPreguntasCorrectas = 0;
         private static List<Preguntas> preguntas = new List<Preguntas>();
         private static List<Respuestas> respuestas = new List<Respuestas>();
 
         public static void  InicializarJuego()
         {
-
+            username = "";
+            puntajeActual = 0;
+            cantidadPreguntasCorrectas = 0;
+            preguntas = new List<Preguntas>();
+            respuestas = new List<Respuestas>();
         }
 
         public static void ObtenerCategorias()
@@ -39,7 +45,7 @@ public class Juego
 
         public bool VerificarRespuesta(int idPregunta, int idRespuesta)
         {
-            foreach (Pregunta pregunta in _preguntas)
+            foreach (Pregunta pregunta in preguntas)
             {
                 if (pregunta.Id == idPregunta)
                 {
@@ -48,4 +54,8 @@ public class Juego
             }
             return false; 
         }
+        public static bool TienePreguntas()
+    {
+        return preguntas != null && preguntas.Count > 0;
+    }
     }

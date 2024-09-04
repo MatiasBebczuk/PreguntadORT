@@ -23,15 +23,15 @@ public class HomeController : Controller
 
     public IActionResult Comenzar(string username, int dificultad, int categoria)
     {
-        bool partidaCargada = Juego.CargarPartida(username, dificultad, categoria);
+        Juego.CargarPartida(username, dificultad, categoria);
 
-        if(partidaCargada)
+        if(Juego.TienePreguntas())
         {
-            //url action a jugar,home
+            //url action a jugar,home o return redirecttoaction("jugar")
         }
         else
         {
-            //url action a index, home
+            //url action a index, home o redirect to action "configurarjuego"
         }
 
     }
