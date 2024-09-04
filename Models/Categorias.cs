@@ -1,4 +1,5 @@
 using PreguntadORT.Models;
+
 public class Categorias
 {       
         public int IdCategoria { get; set; }

@@ -8,6 +8,7 @@ public class BD
 {
     //linkeo a bdd "PreguntadOrt"
     private static string _connectionString = @"Server=localhost; DataBase=PreguntadOrt; Trusted_Connection=True;";
+    
     public static List<Categorias> Categorias = new List<Categorias>();
     public static List<Dificultades> Dificultades = new List<Dificultades>();
     public static List<Preguntas> Preguntas = new List<Preguntas>();

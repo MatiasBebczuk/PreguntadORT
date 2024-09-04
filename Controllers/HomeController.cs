@@ -27,16 +27,16 @@ public class HomeController : Controller
 
         if(Juego.TienePreguntas())
         {
-            //url action a jugar,home o return redirecttoaction("jugar")
+           return Jugar();
         }
         else
         {
-            //url action a index, home o redirect to action "configurarjuego"
+            return ConfigurarJuego();
         }
 
     }
 
-    public IActionResult jugar()
+    public IActionResult Jugar()
     {
     Pregunta preguntaActual = Juego.ObtenerProximaPregunta();
 
@@ -47,22 +47,29 @@ public class HomeController : Controller
     List<Respuesta> respuestas = Juego.ObtenerProximasRespuestas(preguntaActual.Id);
     ViewBag.Respuestas = respuestas;
 
-    return View("Juego");
+    return View("Juego","Home");
     
     }
     else
     {
-    return View("Fin");
+    return View("Fin", "Home");
     }
     }
 
-    [HttpPost]
+    [HttpPost] 
+    
+    // public IActionResult VerificarRespuesta(int idPregunta, int idRespuesta)
+    // {
+    //     bool esCorrecta = Juego.VerificarRespuesta(idPregunta, idRespuesta);
+    //     ViewBag.EsCorrecta = esCorrecta;
+    //     return View("Respuesta");
+    // }
 
-    public IActionResult VerificarRespuesta(int idPregunta, int idRespuesta)
+    public IActionResult ConfigurarJuego()
     {
-        bool esCorrecta = Juego.VerificarRespuesta(idPregunta, idRespuesta);
-        ViewBag.EsCorrecta = esCorrecta;
-        return View("Respuesta");
+        ViewBag.Categorias = BD.ObtenerCategorias();
+        ViewBag.dificultad = BD.ObtenerDificultades();
+        return View("InicializarJuego");
     }
 
     public IActionResult Privacy()
