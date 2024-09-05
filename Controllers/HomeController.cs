@@ -55,7 +55,7 @@ public class HomeController : Controller
     {
         ViewBag.Categorias = BD.ObtenerCategorias();
         ViewBag.dificultad = BD.ObtenerDificultades();
-        return View("InicializarJuego");
+        return View("Inicializar Juego");
     }
 
     public IActionResult Privacy()
@@ -68,4 +68,5 @@ public class HomeController : Controller
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
+
 }
