@@ -3,11 +3,12 @@ using PreguntadORT.Models;
 public static class Juego
     {
 
-        private static string username = "";
-        private static int puntajeActual = 0;
-        private static int cantidadPreguntasCorrectas = 0;
-        private static List<Preguntas> preguntas = new List<Preguntas>();
-        private static List<Respuestas> respuestas = new List<Respuestas>();
+        public static string username = "";
+        public static int puntajeActual = 0;
+        public static int cantidadPreguntasCorrectas = 0;
+        public static List<Preguntas> preguntas = new List<Preguntas>();
+        public static List<Respuestas> respuestas = new List<Respuestas>();
+        public static int preguntaActual;
 
         public static void  InicializarJuego()
         {
@@ -18,25 +19,32 @@ public static class Juego
             respuestas = new List<Respuestas>();
         }
 
-        public static void ObtenerCategorias()
+        public static List<Categorias> ObtenerCategorias()
         {
-
+            return BD.ObtenerCategorias();
         }
 
-        public static void ObtenerDificultades()
+        public static List<Dificultades> ObtenerDificultades()
         {
 
+            return BD.ObtenerDificultades(); 
         }
 
-        public static void CargarPartida(string usernamer, int dificultad, int categoria)
+        public static void CargarPartida(string username, int dificultad, int categoria)
         {
-
+            InicializarJuego();
+            string Username = username;
+            preguntas = BD.ObtenerPreguntas(dificultad, categoria);
         }
 
-        public static void ObtenerProximaPregunta()
+        public static Preguntas ObtenerProximaPregunta(string Username, int dificultad, int categoria)
         {
-
-
+           if(preguntas.Count!=0)
+           {
+            Preguntas pregunta = preguntas[preguntaActual];
+            return pregunta;
+           }
+           return null;
         }
 
         public static List<Respuestas> ObtenerProximasRespuestas(int IdPregunta)
@@ -44,16 +52,17 @@ public static class Juego
             return BD.ObtenerRespuestas(IdPregunta);
         }
 
-       public static bool VerificarRespuesta(Respuestas respuesta)
-        {
-            if (respuesta.Correcta=true)
-            {
-                return true;
-            }
-            else{return false;}
+       public static bool VerificarRespuesta(int idRespuesta){
+        bool EsCorrecto=BD.EsCorrecta(idRespuesta);
+        if(EsCorrecto==true){
+            puntajeActual=puntajeActual+50;
+            cantidadPreguntasCorrectas++;
+            return true;
         }
-
-      
+        else {
+            return false;
+        }
+       }
         public static bool TienePreguntas()
     {
         return preguntas != null && preguntas.Count > 0;

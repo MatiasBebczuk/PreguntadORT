@@ -48,4 +48,13 @@ public static class BD
             return respuestas;
         }
     }
+
+    public static bool EsCorrecta(int idRespuesta){
+        bool Correcta=false;
+        using(SqlConnection db = new SqlConnection(_connectionString)){
+            string sql= "Select Correcta from Respuestas where IdRespuesta=@pIdRespuesta";
+            Correcta = db.QueryFirstOrDefault<bool>(sql, new{pIdRespuesta=idRespuesta});
+        }
+        return Correcta;
+    }
 }
