@@ -39,13 +39,12 @@ public static class Juego
 
         }
 
-        public static Preguntas ObtenerProximasRespuestas(int IdPregunta)
+        public static List<Respuestas> ObtenerProximasRespuestas(int IdPregunta)
         {
-            BD.ObtenerRespuestas(IdPregunta);
-            return 
+            return BD.ObtenerRespuestas(IdPregunta);
         }
 
-       public bool VerificarRespuesta(Respuestas respuesta)
+       public static bool VerificarRespuesta(Respuestas respuesta)
         {
             if (respuesta.Correcta=true)
             {

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using Dapper;
 
-namespace PreguntadORT;
+namespace PreguntadORT.Models;
 
 public static class BD
 {
@@ -39,13 +39,13 @@ public static class BD
         }
 
     public static List<Respuestas> ObtenerRespuestas(int IdPregunta){
-            using (SqlConnection db = new SqlConnection(_connectionString))
-            {
-                List<Respuestas> respuestas = new List<Respuestas>();
-                    string sqlQuery = "SELECT * FROM Respuestas WHERE PreguntaId = @PreguntaId";
-                    var respuestasParaPregunta = db.Query<Respuestas>(sqlQuery, new { PreguntaId = IdPregunta }).AsList();
-                    respuestas.AddRange(respuestasParaPregunta);
-                return respuestas;
-            }
+        using (SqlConnection db = new SqlConnection(_connectionString))
+        {
+            List<Respuestas> respuestas = new List<Respuestas>();
+            string sqlQuery = "SELECT * FROM Respuestas WHERE PreguntaId = @PreguntaId";
+            var respuestasParaPregunta = db.Query<Respuestas>(sqlQuery, new { PreguntaId = IdPregunta }).AsList();
+            respuestas.AddRange(respuestasParaPregunta);
+            return respuestas;
         }
+    }
 }
