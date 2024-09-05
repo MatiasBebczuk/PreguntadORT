@@ -57,6 +57,12 @@ public class HomeController : Controller
         ViewBag.dificultad = BD.ObtenerDificultades();
         return View("Inicializar Juego");
     }
+        public IActionResult InicializarJuego()
+    {
+        ViewBag.Categorias = BD.ObtenerCategorias();
+        ViewBag.dificultad = BD.ObtenerDificultades();
+        return View("InicializarJuego");
+    }
 
     public IActionResult Privacy()
     {
