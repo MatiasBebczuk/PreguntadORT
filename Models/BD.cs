@@ -4,7 +4,7 @@ using Dapper;
 
 namespace PreguntadORT;
 
-public class BD
+public static class BD
 {
     //linkeo a bdd "PreguntadOrt"
     private static string _connectionString = @"Server=localhost; DataBase=PreguntadOrt; Trusted_Connection=True;";
@@ -38,20 +38,14 @@ public class BD
             }
         }
 
-    public static List<Respuestas> ObtenerRespuestas(List<Preguntas> preguntas)
-        {
+    public static List<Respuestas> ObtenerRespuestas(int IdPregunta){
             using (SqlConnection db = new SqlConnection(_connectionString))
             {
                 List<Respuestas> respuestas = new List<Respuestas>();
-
-                foreach (Preguntas pregunta in preguntas)
-                {
                     string sqlQuery = "SELECT * FROM Respuestas WHERE PreguntaId = @PreguntaId";
-                    var respuestasParaPregunta = db.Query<Respuestas>(sqlQuery, new { PreguntaId = pregunta.IdPregunta }).AsList();
+                    var respuestasParaPregunta = db.Query<Respuestas>(sqlQuery, new { PreguntaId = IdPregunta }).AsList();
                     respuestas.AddRange(respuestasParaPregunta);
-                }
-
                 return respuestas;
             }
         }
-    }
+}

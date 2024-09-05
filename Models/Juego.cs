@@ -1,6 +1,6 @@
 using PreguntadORT.Models;
 
-public class Juego
+public static class Juego
     {
 
         private static string username = "";
@@ -36,23 +36,22 @@ public class Juego
         public static void ObtenerProximaPregunta()
         {
 
-        }
-
-        public static void ObtenerProximasRespuestas(int IdPregunta)
-        {
 
         }
 
-       public bool VerificarRespuesta(int idPregunta, int idRespuesta)
+        public static Preguntas ObtenerProximasRespuestas(int IdPregunta)
         {
-            foreach (Pregunta pregunta in preguntas)
+            BD.ObtenerRespuestas(IdPregunta);
+            return 
+        }
+
+       public bool VerificarRespuesta(Respuestas respuesta)
+        {
+            if (respuesta.Correcta=true)
             {
-                if (pregunta.Id == idPregunta)
-                {
-                    return pregunta.RespuestaCorrectaId == idRespuesta;
-                }
+                return true;
             }
-            return false;
+            else{return false;}
         }
 
       

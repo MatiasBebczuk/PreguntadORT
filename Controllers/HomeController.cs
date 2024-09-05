@@ -38,13 +38,13 @@ public class HomeController : Controller
 
     public IActionResult Jugar()
     {
-    Pregunta preguntaActual = Juego.ObtenerProximaPregunta();
+    Preguntas preguntaActual = Juego.ObtenerProximaPregunta();
 
     if (preguntaActual != null)
     {
     ViewBag.Pregunta = preguntaActual;
 
-    List<Respuesta> respuestas = Juego.ObtenerProximasRespuestas(preguntaActual.Id);
+    List<Respuestas> respuestas = Juego.ObtenerProximasRespuestas(preguntaActual);
     ViewBag.Respuestas = respuestas;
 
     return View("Juego","Home");
